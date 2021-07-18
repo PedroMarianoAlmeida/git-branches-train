@@ -1,17 +1,44 @@
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
+
+import Tree from 'react-d3-tree';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'grid',
+    gridTemplateColumns: '50% 50%',
+  },
+}));
+
+const orgChart = {
+  name: 'CEO',
+  children: [],
+};
 
 export default function Home() {
+  const classes = useStyles();
+
   return (
-    <>
-      <Typography variant="h1" align="center">
-        React + Next + Material UI Template
-      </Typography>
-      <Typography paragraph> 
-        You can check my components to help in your project <Link href="https://next-material-ui-components.vercel.app/" target="_blank" rel="noopener noreferrer">
-        here
-      </Link>
-      </Typography>
-    </>
+    <Box className={classes.root}>
+      <Box>
+        <Typography variant="h4">Git Branches Train(ing)</Typography>
+      </Box>
+      <Box>
+        <Box>
+          <Typography variant="h2">Model</Typography>
+          <Box height="300px" width="300px">
+            <Tree data={orgChart} />
+          </Box>
+        </Box>
+
+        <Box>
+          <Typography variant="h2">Current</Typography>
+          <Box height="300px">
+            <Tree data={orgChart} />
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }
